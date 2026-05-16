@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Удаление показания</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .warning { color: red; }
+        button { background: #f44336; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Удалить показание?</h1>
+    <p class="warning">Вы уверены, что хотите удалить показание #{{ reading.id }}?</p>
+    <p><strong>{{ reading.temperature }}°C</strong> от {{ reading.timestamp|date:"Y-m-d H:i" }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Да, удалить</button>
+        <a href="{% url 'readings:reading_list' %}">Отмена</a>
+    </form>
+</body>
+</html>

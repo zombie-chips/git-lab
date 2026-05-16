@@ -1,0 +1,15 @@
+{% extends 'readings/base.html' %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+<h2>Профиль пользователя</h2>
+<table style="width: auto;">
+    <tr><th>Имя пользователя:</th><td>{{ user.username }}</td></tr>
+    <tr><th>Email:</th><td>{{ user.email }}</td></tr>
+    <tr><th>Имя:</th><td>{{ user.first_name|default:"—" }}</td></tr>
+    <tr><th>Фамилия:</th><td>{{ user.last_name|default:"—" }}</td></tr>
+    <tr><th>Роль:</th><td>{{ user.profile.get_role_display }}</td></tr>
+    <tr><th>Организация:</th><td>{{ user.profile.organization|default:"—" }}</td></tr>
+    <tr><th>Телефон:</th><td>{{ user.profile.phone|default:"—" }}</td></tr>
+</table>
+<a href="{% url 'readings:home' %}" class="btn">На главную</a>
+{% endblock %}

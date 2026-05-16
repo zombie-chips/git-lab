@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Показание #{{ reading.id }}</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .card { border: 1px solid #ddd; padding: 20px; max-width: 500px; }
+        .field { margin: 10px 0; }
+        .label { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Детали показания</h1>
+    <div class="card">
+        <div class="field"><span class="label">ID:</span> {{ reading.id }}</div>
+        <div class="field"><span class="label">Датчик:</span> {{ reading.sensor.serial_number }} ({{ reading.sensor.location.name }})</div>
+        <div class="field"><span class="label">Температура:</span> {{ reading.temperature }} °C</div>
+        <div class="field"><span class="label">Дата и время:</span> {{ reading.timestamp|date:"Y-m-d H:i:s" }}</div>
+        <div class="field"><span class="label">Примечание:</span> {{ reading.note|default:"—" }}</div>
+    </div>
+    <p>
+        <a href="{% url 'readings:reading_list' %}">Назад к списку</a>
+        <a href="{% url 'readings:reading_update' reading.pk %}">Редактировать</a>
+    </p>
+</body>
+</html>

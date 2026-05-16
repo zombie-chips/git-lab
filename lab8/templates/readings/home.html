@@ -1,0 +1,21 @@
+{% extends 'readings/base.html' %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<h1>Добро пожаловать в систему мониторинга температуры</h1>
+<p>Ваша роль: <strong>{{ user.profile.get_role_display }}</strong></p>
+
+<div style="margin-top: 30px;">
+    <h3>Доступные действия:</h3>
+    <ul>
+        <li><a href="{% url 'readings:reading_list' %}"> Просмотр температурных показаний</a></li>
+        {% if user.profile.role != 'observer' %}
+            <li><a href="{% url 'readings:reading_create' %}"> Добавить новое показание</a></li>
+            <li><a href="{% url 'readings:location_list' %}"> Управление локациями</a></li>
+            <li><a href="{% url 'readings:sensor_list' %}"> Управление датчиками</a></li>
+        {% endif %}
+        {% if user.profile.role == 'admin' %}
+            <li><a href="/admin/"> Админ-панель</a></li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}
